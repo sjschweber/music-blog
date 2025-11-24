@@ -1,48 +1,28 @@
-import logoDark from "./logo-dark.svg";
-import logoLight from "./logo-light.svg";
+import posts from "~/posts";
 
 export function Welcome() {
   return (
-    <main className="flex items-center justify-center pt-16 pb-4">
-      <div className="flex-1 flex flex-col items-center gap-16 min-h-0">
-        <header className="flex flex-col items-center gap-9">
-          <div className="w-[500px] max-w-[100vw] p-4">
-            <img
-              src={logoLight}
-              alt="React Router"
-              className="block w-full dark:hidden"
-            />
-            <img
-              src={logoDark}
-              alt="React Router"
-              className="hidden w-full dark:block"
-            />
-          </div>
-        </header>
-        <div className="max-w-[300px] w-full space-y-6 px-4">
-          <nav className="rounded-3xl border border-gray-200 p-6 dark:border-gray-700 space-y-4">
-            <p className="leading-6 text-gray-700 dark:text-gray-200 text-center">
-              What&apos;s next?
-            </p>
-            <ul>
-              {resources.map(({ href, text, icon }) => (
-                <li key={href}>
-                  <a
-                    className="group flex items-center gap-3 self-stretch p-3 leading-normal text-blue-700 hover:underline dark:text-blue-500"
-                    href={href}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {icon}
-                    {text}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </div>
+    <div className="py-10 flex gap-y-10 flex-col overflow-y-scroll max-w-[450px] rounded-t-md rounded-b-md h-full justify-self-center justify-center align-top">
+      <div>
+        <h1 className="font-bold text-4xl tracking-widest">My Music Blog</h1>
+        <p className="italic">
+          Thoughts and opinions on concerts, musicians, bands, and anything
+          music related
+        </p>
+        <div>filters: coming soon </div>
       </div>
-    </main>
+      {posts.map((post) => (
+        <div className="flex flex-col h-min px-3 py-3 gap-y-0 bg-gray-100/70 rounded-md border-5 border-solid">
+          <div className="text-black rounded-t-md p-1.5 flex-1 flex text-xl content-center capitalize tracking-widest">
+            <h2 className="flex-1">{post.title}</h2>
+          </div>
+          <div className="p-1.5 pt-0 text-black italic text-xs tracking-widest font-extralight content-center">
+            {post.publish_date}
+          </div>
+          <div className="text-black min-h-25 p-1.5">{post.body}</div>
+        </div>
+      ))}
+    </div>
   );
 }
 
